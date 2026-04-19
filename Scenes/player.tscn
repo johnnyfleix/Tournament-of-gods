@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b6e8g3ssjfm3n"]
+
+[ext_resource type="Script" uid="uid://b6ed8rckv425e" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://d285w1hy8ndgv" path="res://Scenes/Components/gravity_component.tscn" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://cj7oqun3nhwuw" path="res://Scenes/Components/input_component.tscn" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://djwwrdsw4fom2" path="res://Scenes/Components/movement_component.tscn" id="4_vgqql"]
+[ext_resource type="PackedScene" uid="uid://38g7c21pt7gl" path="res://Scenes/Components/advanced_jump_component.tscn" id="5_fkybt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f60y1"]
+
+[node name="Player" type="CharacterBody2D" unique_id=655567126 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "jump_component")]
+script = ExtResource("1_cvnsp")
+gravity_component = NodePath("GravityComponent")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+jump_component = NodePath("AdvancedJumpComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1344548359]
+shape = SubResource("CapsuleShape2D_f60y1")
+
+[node name="GravityComponent" parent="." unique_id=2135320046 instance=ExtResource("1_v0iea")]
+
+[node name="InputComponent" parent="." unique_id=1096862231 instance=ExtResource("3_6t5aa")]
+
+[node name="MovementComponent" parent="." unique_id=692728389 instance=ExtResource("4_vgqql")]
+
+[node name="AdvancedJumpComponent" parent="." unique_id=1190801789 instance=ExtResource("5_fkybt")]
+jump_velocity = -400.0

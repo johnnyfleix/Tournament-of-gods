@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c2ulvt7tgu4gp"]
+
+[ext_resource type="PackedScene" uid="uid://b6e8g3ssjfm3n" path="res://Scenes/player.tscn" id="1_s0gyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uc32"]
+size = Vector2(1698, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gyx"]
+size = Vector2(431, 16)
+
+[node name="Main" type="Node2D" unique_id=1445935027]
+
+[node name="Player" parent="." unique_id=655567126 instance=ExtResource("1_s0gyx")]
+position = Vector2(547, 0)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1412029171]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=595018634]
+position = Vector2(663, 631)
+shape = SubResource("RectangleShape2D_3uc32")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=673650779]
+anchor_mode = 0
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1894164007]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1425557543]
+position = Vector2(574, 575)
+shape = SubResource("RectangleShape2D_s0gyx")
+one_way_collision = true
