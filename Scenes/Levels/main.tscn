@@ -19,9 +19,6 @@ position = Vector2(547, 0)
 position = Vector2(663, 631)
 shape = SubResource("RectangleShape2D_3uc32")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=673650779]
-anchor_mode = 0
-
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1894164007]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1425557543]
