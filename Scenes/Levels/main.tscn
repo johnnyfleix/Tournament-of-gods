@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://c2ulvt7tgu4gp"]
 
 [ext_resource type="PackedScene" uid="uid://b6e8g3ssjfm3n" path="res://Scenes/player.tscn" id="1_s0gyx"]
+[ext_resource type="Script" uid="uid://cqph23cje4g7b" path="res://Scripts/Prototypes/rigid_body_2d.gd" id="2_yjsus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uc32"]
 size = Vector2(1698, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gyx"]
 size = Vector2(431, 16)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s0gyx"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s0gyx"]
+radius = 25.0
 
 [node name="Main" type="Node2D" unique_id=1445935027]
 
@@ -17,11 +24,24 @@ position = Vector2(547, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=595018634]
 position = Vector2(663, 631)
+scale = Vector2(7.359999, 1)
 shape = SubResource("RectangleShape2D_3uc32")
 
 [node name="Platform" type="StaticBody2D" parent="." unique_id=1894164007]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1425557543]
 position = Vector2(574, 575)
 shape = SubResource("RectangleShape2D_s0gyx")
 one_way_collision = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=411453835 groups=["ball"]]
+position = Vector2(-1, 0)
+collision_layer = 32
+collision_mask = 5
+physics_material_override = SubResource("PhysicsMaterial_s0gyx")
+script = ExtResource("2_yjsus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2076005320]
+position = Vector2(328, -271)
+shape = SubResource("CircleShape2D_s0gyx")

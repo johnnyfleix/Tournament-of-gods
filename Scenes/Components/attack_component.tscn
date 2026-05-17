@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c4l1frevqfnbu"]
+
+[ext_resource type="Script" uid="uid://vpvwoit3wav0" path="res://Scenes/Components/attack_component.gd" id="1_5ngoh"]
+
+[node name="AttackComponent" type="Node" unique_id=1853996075 node_paths=PackedStringArray("shoot_timer")]
+script = ExtResource("1_5ngoh")
+shoot_timer = NodePath("ShootTimer")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=541487163]
+wait_time = 0.05
+one_shot = true
