@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6ed8rckv425e" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://d285w1hy8ndgv" path="res://Scenes/Components/gravity_component.tscn" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://b204urelxh1bc" path="res://Scripts/Feedback/VFX/camera_fx.gd" id="2_8erm5"]
 [ext_resource type="PackedScene" uid="uid://cj7oqun3nhwuw" path="res://Scenes/Components/input_component.tscn" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://djwwrdsw4fom2" path="res://Scenes/Components/movement_component.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://38g7c21pt7gl" path="res://Scenes/Components/advanced_jump_component.tscn" id="5_fkybt"]
@@ -62,6 +63,9 @@ attack_component = NodePath("AttackComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1344548359]
 shape = SubResource("CapsuleShape2D_f60y1")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=757752457 groups=["player_camera"]]
+script = ExtResource("2_8erm5")
+
 [node name="GravityComponent" parent="." unique_id=2135320046 instance=ExtResource("1_v0iea")]
 
 [node name="InputComponent" parent="." unique_id=1096862231 instance=ExtResource("3_6t5aa")]
@@ -71,19 +75,20 @@ shape = SubResource("CapsuleShape2D_f60y1")
 [node name="AdvancedJumpComponent" parent="." unique_id=1190801789 instance=ExtResource("5_fkybt")]
 jump_velocity = -400.0
 
-[node name="AttackComponent" parent="." unique_id=1853996075 node_paths=PackedStringArray("anim_player", "muzzle") instance=ExtResource("6_x3wgy")]
+[node name="AttackComponent" parent="." unique_id=1853996075 node_paths=PackedStringArray("camer_fx", "anim_player", "muzzle") instance=ExtResource("6_x3wgy")]
+camer_fx = NodePath("../Camera2D")
 anim_player = NodePath("../Anim")
 muzzle = NodePath("../Marker2D")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1177260180]
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1353069935]
 position = Vector2(10, 0)
 
-[node name="Sword" type="Area2D" parent="." unique_id=1135707070]
+[node name="Sword" type="Area2D" parent="." unique_id=1135707070 node_paths=PackedStringArray("knockback_origin")]
+position = Vector2(27, 0)
 collision_layer = 4
 collision_mask = 52
 script = ExtResource("7_3smsa")
+knockback_origin = NodePath("KnockbackOrigin")
 knockback_force = 300.0
 
 [node name="SwordCollider" type="CollisionShape2D" parent="Sword" unique_id=482570824 groups=["sword_collider"]]
@@ -91,6 +96,9 @@ position = Vector2(29, 0)
 shape = SubResource("RectangleShape2D_fkybt")
 disabled = true
 debug_color = Color(0.983713, 0.12797019, 0, 0.41960785)
+
+[node name="KnockbackOrigin" type="Marker2D" parent="Sword" unique_id=276639849]
+position = Vector2(-13, 0)
 
 [node name="Anim" type="AnimationPlayer" parent="." unique_id=1172658913]
 libraries/ = SubResource("AnimationLibrary_3smsa")

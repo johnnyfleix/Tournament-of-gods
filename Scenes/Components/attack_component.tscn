@@ -7,5 +7,5 @@ script = ExtResource("1_5ngoh")
 shoot_timer = NodePath("ShootTimer")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=541487163]
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://0aa1wkg82v3x"]
+
+[ext_resource type="Texture2D" uid="uid://chj4cpv57p7bg" path="res://Entities/Vfx/Assets/particles_flipbook_example.webp" id="1_jty7k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3fb2"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a3fb2"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+anim_speed_max = 2.0
+
+[node name="ParticleExplosionFx" type="GPUParticles2D" unique_id=1155110080]
+material = SubResource("CanvasItemMaterial_a3fb2")
+emitting = false
+texture = ExtResource("1_jty7k")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_a3fb2")

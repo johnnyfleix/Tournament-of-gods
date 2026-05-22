@@ -3,6 +3,7 @@ class_name AttackComponent
 extends Node
 
 # References to required nodes for playing animations and spawning projectiles.
+@export var camer_fx: CameraFx
 @export var anim_player: AnimationPlayer
 @export var muzzle: Marker2D
 @export var shoot_timer: Timer
@@ -22,7 +23,7 @@ func _ready():
 
 # Triggers a melee sword attack animation if the attack action is pressed.
 func sword_attack(body: CharacterBody2D, attack_pressed: bool) -> void:
-	if body and attack_pressed:
+	if body and attack_pressed and not is_shooting:
 		is_attacking = true
 		anim_player.play("attack")
 
@@ -44,3 +45,4 @@ func _spawn_hell_blanks() -> void:
 	var bullet_instance = bullet.instantiate()
 	bullet_instance.global_transform = muzzle.global_transform
 	get_tree().current_scene.add_child(bullet_instance)
+	camer_fx.trigger_shake()

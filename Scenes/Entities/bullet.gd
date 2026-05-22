@@ -1,11 +1,13 @@
+class_name Bullet
+
 # Represents a projectile entity that travels horizontally and applies knockback on impact.
 extends Area2D
-
+@export var knockback_origin: Marker2D
 # Movement speed of the projectile in pixels per second.
 @export var speed: float = 800
 # Knockback force applied to targets upon collision.
 @export var knockback_force: float = 20.0
-# Direction of movement along the horizontal axis.
+# Direction of movement anlong the horizontal axis.
 var move_direction: float = 1.0
 
 # Called when the node enters the scene tree for the first time. Initializes direction and scale.
@@ -27,11 +29,5 @@ func _on_bullet_life_time_timeout() -> void:
 
 
 # Triggered when a physics body enters the bullet's collision area.
-func _on_body_entered(body: Node2D) -> void:
-	# Check if the colliding body supports receiving knockback.
-	if body.has_method("apply_knockback"):
-		# Calculate the normalized direction vector from the bullet to the target body.
-		var hit_direction = (body.global_position - global_position).normalized()
-		
-		# Apply the calculated knockback force along the hit direction vector.
-		body.apply_knockback(hit_direction * knockback_force)
+func _on_body_entered(_body: Node2D) -> void:
+	queue_free()

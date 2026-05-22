@@ -4,10 +4,11 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ocal0"]
 
-[node name="Bullet" type="Area2D" unique_id=1164572656]
+[node name="Bullet" type="Area2D" unique_id=1164572656 groups=["bullets"]]
 collision_layer = 4
 collision_mask = 32
 script = ExtResource("1_evv7v")
+knockback_force = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=767413784]
 rotation = 1.5707964

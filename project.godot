@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 player=""
 sword_collider=""
+player_camera="Camera that is for the player"
+bullets=""
 
 [input]
 

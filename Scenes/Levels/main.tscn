@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6e8g3ssjfm3n" path="res://Scenes/player.tscn" id="1_s0gyx"]
 [ext_resource type="Script" uid="uid://cqph23cje4g7b" path="res://Scripts/Prototypes/rigid_body_2d.gd" id="2_yjsus"]
+[ext_resource type="PackedScene" uid="uid://0aa1wkg82v3x" path="res://Entities/Vfx/particle_explosion_fx.tscn" id="3_u872a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uc32"]
 size = Vector2(1698, 20)
@@ -13,6 +14,9 @@ size = Vector2(431, 16)
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0gyx"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u872a"]
 radius = 25.0
 
 [node name="Main" type="Node2D" unique_id=1445935027]
@@ -35,13 +39,28 @@ position = Vector2(574, 575)
 shape = SubResource("RectangleShape2D_s0gyx")
 one_way_collision = true
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=411453835 groups=["ball"]]
-position = Vector2(-1, 0)
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=411453835 node_paths=PackedStringArray("explosion_particles") groups=["ball"]]
+position = Vector2(-2, 0)
 collision_layer = 32
 collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_s0gyx")
 script = ExtResource("2_yjsus")
+explosion_particles = NodePath("ParticleExplosionFx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=2076005320]
 position = Vector2(328, -271)
 shape = SubResource("CircleShape2D_s0gyx")
+
+[node name="ParticleExplosionFx" parent="RigidBody2D" unique_id=1155110080 instance=ExtResource("3_u872a")]
+position = Vector2(328, -271)
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D" unique_id=78741719]
+collision_layer = 32
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D" unique_id=192211744]
+position = Vector2(328, -271)
+shape = SubResource("CircleShape2D_u872a")
+
+[connection signal="body_entered" from="RigidBody2D" to="RigidBody2D" method="_on_body_entered"]
+[connection signal="area_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_area_entered"]

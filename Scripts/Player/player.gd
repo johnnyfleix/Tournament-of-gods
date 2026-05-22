@@ -28,23 +28,21 @@ func _controller(delta: float) -> void:
 	var jump: AdvancedJumpComponent = jump_component
 	var attack: AttackComponent = attack_component
 	var is_dropping: bool = input.get_drop_input()
-	
-	
-	
+	#gravity.handle_gravity(self , delta)
+	#jump.handle_jump(self , input.get_jump_input() and not is_dropping, input.get_jump_input_released())
+
+
 	attack.sword_attack(self , input.get_attack_input())
 	attack.shoot_attack(self , input.get_shoot_input())
 
 	if attack.is_shooting:
 		self.velocity = Vector2.ZERO
-	else :
-		gravity.handle_gravity(self , delta)
+	else:
 		movement.handle_horizontal_movement(self , input.get_horizontal_input())
 		jump.handle_jump(self , input.get_jump_input() and not is_dropping, input.get_jump_input_released())
-
+		gravity.handle_gravity(self , delta)
 		if is_dropping:
 			drop_down()
-
-
 
 
 # Temporarily disables collision with one-way platforms to drop down through them.
